@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Analyzer AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    </head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Credit Risk <span class="highlight">Analyzer</span></h1>
+            <p>Financial Assessment Model</p>
+        </header>
+
+        <main>
+            <form id="predictionForm">
+                <div class="form-group full-width">
+                    <label for="model_select">Select Your Model</label>
+                    <select id="model_select" required>
+                        <option value="Random Forest" selected>Random Forest (Recommended)</option>
+                        <option value="XGBoost">XGBoost (High Precision)</option>
+                        <option value="Logistic Regression">Logistic Regression (Fast)</option>
+                    </select>
+                </div>
+
+                <div class="grid-container">
+                    <div class="card">
+                        <h3>Personal Details</h3>
+                        <div class="input-group">
+                            <label>Age</label>
+                            <input type="number" id="person_age" value="25" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Annual Income ($)</label>
+                            <input type="number" id="person_income" value="50000" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Employment Length (Years)</label>
+                            <input type="number" id="person_emp_length" value="2" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Home Ownership</label>
+                            <select id="person_home_ownership">
+                                <option value="RENT">Rent</option>
+                                <option value="MORTGAGE">Mortgage</option>
+                                <option value="OWN">Own</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Loan Details</h3>
+                        <div class="input-group">
+                            <label>Loan Amount ($)</label>
+                            <input type="number" id="loan_amnt" value="10000" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Interest Rate (%)</label>
+                            <input type="number" step="0.1" id="loan_int_rate" value="11.5" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Loan Intent</label>
+                            <select id="loan_intent">
+                                <option value="EDUCATION">Education</option>
+                                <option value="MEDICAL">Medical</option>
+                                <option value="VENTURE">Venture</option>
+                                <option value="PERSONAL">Personal</option>
+                                <option value="DEBTCONSOLIDATION">Debt Consolidation</option>
+                                <option value="HOMEIMPROVEMENT">Home Improvement</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Loan Grade</label>
+                            <select id="loan_grade">
+                                <option value="A">A (Best)</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="G">G</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Credit History</h3>
+                        <div class="input-group">
+                            <label>Default on File?</label>
+                            <select id="cb_person_default_on_file">
+                                <option value="N">No</option>
+                                <option value="Y">Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>History Length (Years)</label>
+                            <input type="number" id="cb_person_cred_hist_length" value="4" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Loan % of Income (0-100%)</label>
+                            <input type="number" step="0.01" id="loan_percent_income" value="20.00" min="0" readonly
+                                style="background-color: rgba(15, 23, 42, 0.4); cursor: not-allowed;">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="predictBtn">Analyze Risk</button>
+            </form>
+
+            <div id="result" class="hidden">
+                <h2>Analysis Result</h2>
+                <div class="result-content">
+                    <div class="metric">
+                        <span>Prediction</span>
+                        <h3 id="res_pred">--</h3>
+                    </div>
+                    <div class="metric">
+                        <span>Risk Probability</span>
+                        <h3 id="res_prob">--%</h3>
+                    </div>
+                    <div class="metric">
+                        <span>Risk Level</span>
+                        <h3 id="res_risk">--</h3>
+                    </div>
+                </div>
+            </div>
+            
+            </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
